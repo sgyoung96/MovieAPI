@@ -45,7 +45,7 @@ showCnt	        문자열	        해당일자에 상영된 횟수
 <!-- 순번 -->
     <TextView
         android:id="@+id/tvRNum"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="match_parent"
         android:text="1"
         android:textStyle="bold"
@@ -59,16 +59,16 @@ showCnt	        문자열	        해당일자에 상영된 횟수
 <!-- 영화 제목 -->
     <TextView
         android:id="@+id/tvMovieNM"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="영화 제목"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="20dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/tvRNum"
+        app:layout_constraintRight_toLeftOf="@id/ivFavorite"
         />
 <!-- 개봉일 -->
     <TextView
@@ -79,7 +79,6 @@ showCnt	        문자열	        해당일자에 상영된 횟수
         android:textStyle="normal"
         android:textColor="@color/black"
         android:textSize="15dp"
-        android:layout_marginLeft="10dp"
         app:layout_constraintTop_toBottomOf="@id/tvMovieNM"
         app:layout_constraintLeft_toRightOf="@id/tvRNum"
         app:layout_constraintBottom_toTopOf="@id/tvAudiAcc"
@@ -89,7 +88,6 @@ showCnt	        문자열	        해당일자에 상영된 횟수
         android:id="@+id/tvAudiAcc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:text="1234567890"
         app:layout_constraintTop_toBottomOf="@id/tvOpenDt"
         app:layout_constraintLeft_toRightOf="@id/tvRNum"
@@ -100,7 +98,6 @@ showCnt	        문자열	        해당일자에 상영된 횟수
         android:id="@+id/rbRatings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:numStars="5"
         android:rating="1"
         android:stepSize="0.1"

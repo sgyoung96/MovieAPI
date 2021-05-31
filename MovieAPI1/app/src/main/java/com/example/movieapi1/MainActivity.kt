@@ -26,10 +26,15 @@ MainActivity 이해 안 됨
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var adapter: Adapter
-    lateinit var repository: MovieListRepository
-    lateinit var apiInterface: MovieInfoOpenApiService
-    lateinit var dateSet: String
+//    lateinit var adapter: Adapter
+//    lateinit var repository: MovieListRepository
+//    lateinit var apiInterface: MovieInfoOpenApiService
+//    lateinit var dateSet: String
+
+    var adapter: Adapter? = null
+    var repository: MovieListRepository? = null
+    var apiInterface: MovieInfoOpenApiService? = null
+    var dateSet: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +44,12 @@ class MainActivity : AppCompatActivity() {
 
         adapter = Adapter()
         repository = MovieListRepository()
-        apiInterface = repository.initBuild()!!
+        apiInterface = repository?.initBuild()!!
 
         rvContainer.layoutManager = LinearLayoutManager(this)
         rvContainer.adapter = adapter
 
-        boxOfficeSearch() // ******************------------------------------------ 함수 안 타고 여기서 바로 앱 중단됨
+        boxOfficeSearch() // ******************------------------------------------ 함수 안 타고 여기서 바로 앱 중단됨 (이 함수 내부의 로직이 뭔가 문제가 있음)
 
     }
 
@@ -67,14 +72,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun boxOfficeSearch() {
-        apiInterface.getBoxOffice(Info.KEY, dateSet).enqueue(object : Callback, retrofit2.Callback<Results> {
+        apiInterface?.getBoxOffice(Info.KEY, dateSet)?.enqueue(object : Callback, retrofit2.Callback<Results> {
             override fun onResponse(call: Call<Results>, response: Response<Results>) {
                 val body = response.body()
 
                 Log.d("body : ", "=====================================================" + body.toString() )
 
                 val list : MutableList<Model>? = body?.boxOfficeResult?.dailyBoxOfficeList
-                if(list != null) adapter.setData(list)
+                if(list != null) adapter?.setData(list)
             }
             override fun onFailure(call: Call<Results>, t: Throwable) {
                 t.printStackTrace()
